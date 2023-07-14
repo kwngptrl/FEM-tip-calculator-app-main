@@ -20,6 +20,8 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 ## Overview
 
+This challenge includes elements of Frontend Mentor's [Interactive Rating Component.](https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI/hub)
+
 ### The challenge
 
 Users should be able to:
@@ -54,13 +56,37 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Vanilla JS
 
 ### What I learned
+
+When I first downloaded the starter files and looked at it I was wondering why there's no submit button on this. This is essentially a form and there should be a submit button. But as it turns out, this is like some calculator apps out there where it is based on event listeners. So, thinking about it I immediately recognized that a previous challenge can be included here and that was the Interactive Rating Component. It would be used where the user would select the tip in percent, but what about 'custom'?
+
+This is where I fell into the JS rabbit hole. The HTML and CSS were largely done in two days. The JS on the other hand had me reading about IIFEs, closures, nested event listeners (which turned out to be bad practice), roving tabindexes, among other things. What I wanted to happen once I entered the group of radiobuttons was to be able to use the arrow keys to navigate inside it, and then when I get to the last radiobutton named 'custom' it turns into an `<input type='text' />` field.
+
+Originally, I attached event listeners to all elements of the form. Later on, I read about event delegation and decided to use that. There were a lot of tiny little things that had to be tracked like the tabindex, changing the radiobutton checked state from true to false and back, tracking where the cursor/caret was in order for keyboard navigation to work within the radiobutton group, transferring any value there to the radiobutton, and dispatching an event from it when the focus changes to another element to update the result in the result container. Then, if the user pressed the 'reset' button all states, values, and error messages had to be reset or return to default.
+
+Now that I'm done with this I'm thinking I 'overthinked' too much. Maybe I could've just used 5 radiobuttons and a standard `<input type='text' />`. There would still be the issue of tabindex regardless though.
+
+For computing the result and displaying to the result container, I used the following code so that it wouldn't display `NaN` or `Infinity`.
+```js
+tipAmount.innerText = `\$${(isFinite(tipAmountPerPerson)) ? tipAmountPerPerson.toFixed(2): '0.00'}`;
+totalAmount.innerText = `\$${(isFinite(total)) ? total.toFixed(2) : '0.00'}`;
+```
+It would just display $0.00, the error message would be displayed closest to the input field for bill and/or number of people. For the 'custom' input field within the radiobutton group, entering invalid values would cause the background color of the input field to turn red.
+```js
+let tip = Number(inputCustom.value);
+    if (tip < 0 || tip > 100 || isNaN(tip)) {
+            inputCustom.classList.add("invalid");
+        } else {
+            inputCustom.classList.remove("invalid");
+        }
+```
+```css
+.custom-tip.invalid {
+    background-color: red;
+}
+```
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
