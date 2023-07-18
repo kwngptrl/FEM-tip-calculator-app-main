@@ -14,7 +14,7 @@
 <body>
   <div class="container">
     <header>
-      <h1 class="appname">S P L I<br>T T E R</h1>
+      <h1 class="appname">spli<br>tter</h1>
     </header>
     <main>
       <form id="tip-splitter" class="form-container">
@@ -29,7 +29,7 @@
           <legend>Select Tip %</legend>
           <div class="radio-btn-group">
             <div class="radio-container">
-              <input type="radio" name="rating" value="5" id="choice1"  required>
+              <input type="radio" name="rating" value="5" id="choice1">
               <label for="choice1">5%</label>
             </div>
             <div class="radio-container">
@@ -53,7 +53,7 @@
               <label for="custom">Custom</label>
               <div class="custom-container">
                   <label for="custom-tip" class="visually-hidden" aria-hidden="true">custom value</label>
-                  <input class="custom-tip hidden" id="custom-tip" type="text" name="custom-tip" placeholder="Custom" pattern="\d{3}" tabindex="-1" required>
+                  <input class="custom-tip hidden" id="custom-tip" type="text" name="custom-tip" placeholder="Custom" pattern="\d{3}" title="Enter a value from 0 to 100" tabindex="-1">
                   <div class="errmsg hidden"></div>
               </div>
             </div>
@@ -69,19 +69,21 @@
       </form>
 
       <div class="result-container">
-        <div class="per-person">
-          <div class="amount">
-            <p>Tip Amount</p>
-            <p>/ person</p>
+        <div class="upper">
+          <div class="per-person">
+            <div class="amount">
+              <p>Tip Amount</p>
+              <p>/ person</p>
+            </div>
+            <span class="tip-amount">$0.00</span>
           </div>
-          <span class="tip-amount">$0.00</span>
-        </div>
-        <div class="per-person">
-          <div class="amount">
-            <p>Total</p>
-            <p>/ person</p>
+          <div class="per-person">
+            <div class="amount">
+              <p>Total</p>
+              <p>/ person</p>
+            </div>
+            <span class="total">$0.00</span>
           </div>
-          <span class="total">$0.00</span>
         </div>
         <button id="btn" type="submit">RESET</button>
       </div>

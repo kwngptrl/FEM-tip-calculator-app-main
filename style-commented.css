@@ -20,8 +20,6 @@
     /* font body-copy */
     --fs-body-copy: 24px;
 
-    /* minvw: 375px, maxvw: 1920, minfs: 1.5rem, maxfs:10rem */
-    /* --magic-margin: clamp(1.5rem, -0.5631rem + 8.8026vw, 10rem); */
     --small-radius: .25rem;
 }
 
@@ -31,7 +29,23 @@ html {
 
 body {
     /*  desktop: 1440x900px
-        mobile: 375x780px */
+        mobile: 375x780px 
+        
+        desktop main: 922x482px (922x624 including the appname)
+            result container: 412x415px
+            form container: 379x415px
+        mobile main: 375x789px (375x883 including the appname)
+            result container: 326x258px
+            form container: 326x449px            
+            
+        My version:
+        desktop main: 880x440px (880x634 including the appname)
+            result container: 386x364px
+            form container: 386x364px
+        mobile main: 375x825px (375x913px including the appname)
+            result container: 327x301px
+            form container: 329x451px
+            */
     font-family: 'Space Mono', monospace;
 }
 
@@ -39,11 +53,6 @@ body {
     display: none;
 }
 
-/* doesn't work without .custom-tip */
-.custom-tip.invalid {
-    background-color: red;
-}
-    
 .container {
     max-width: 1440px;
     margin-inline: auto;
@@ -54,20 +63,25 @@ body {
     gap: 1rem;
 
     background-color: var(--neutral-light-grayish-cyan);
-
-    /* place-content: center; */
 }
 
-
 header {
-    /* place-self: center; */
     align-self: end;
     justify-self: center;
     padding-block-start: 6rem;
 }
+
 .appname {
     font-size: 1rem;
+    letter-spacing: 1ch;
+    /*  
+        Previous line added a space at the end, the
+        next line moves it 1ch in order to appear centered
+     */
+    margin-inline-start: 1ch;
+    text-transform: uppercase;
     color: var(--neutral-dark-grayish-cyan);
+
 }
 
 main {
@@ -75,11 +89,8 @@ main {
     border-radius: 1rem;
     padding: 1rem;
 
-    max-width: 500px;
     place-self: center;
     min-width: 375px;
-    /* margin-inline: 1rem; */
-    /* height: fit-content; */
 }
 
 .form-container {
@@ -95,7 +106,6 @@ main {
 .formGroup label {
     display: block;
     font-size: .75rem;
-    /* padding-block-end: .25rem; */
 }
 
 .formGroup input,
@@ -106,21 +116,19 @@ main {
     color: var(--neutral-very-dark-cyan);
     background-color: var(--neutral-very-light-grayish-cyan);
     border: 2px solid transparent;
+    transition: all 200ms ease;
 }
 
 .custom-container > input {
     /* If custom-container is a child of the last radio-container, then only text-align: center is uncommented */
     text-align: center;
-    /* If the custom-container is a sibling of radio-containers 1-5 then width, height 100% is required */
-    /* width 100% so the input would not be longer than the radiobuttons, for when radiobutton #6 is not used anymore   */
-    /* width: 100%;
-    height: 100%; */   /* without it, there's empty space underneath since radiobuttons are taller than the input field */
-    /* next line is commented out, otherwise can't see the placeholder since the input is 'min-content' */
-    /* max-width: min-content; */
-    background-color: var(--neutral-very-light-grayish-cyan);
-    border: 2px solid transparent; 
-    /* display: none; */   /* hides the input field, use js to unhide */
+    border-radius: var(--small-radius);
 }
+
+.custom-tip.invalid {
+    border: 5px solid red;
+}
+
 .formGroup input:hover,
 .custom-container > input:hover {
     border: 2px solid var(--primary-strong-cyan);
@@ -129,8 +137,10 @@ main {
 
 .errmsg {
     position: absolute;
-    top: 2px;
-    right: 0;
+    /* top: 2px;
+    right: 0; */
+    inset-block: 2px auto;
+    inset-inline: auto 0;
     font-size: .65rem;
     color: orangered;
 }
@@ -138,15 +148,19 @@ main {
 .icon-dollar {
     position: absolute;
     content: url('./images/icon-dollar.svg');
-    top: 1.65rem;
-    left: .65rem;
+    /* top: 1.65rem;
+    left: .65rem; */
+    inset-block: 1.65rem auto;
+    inset-inline: .65rem auto;
 }
 
 .icon-person {
     position: absolute;
     content: url('./images/icon-person.svg');
-    top: 1.65rem;
-    left: .65rem;
+    /* top: 1.65rem;
+    left: .65rem; */
+    inset-block: 1.65rem auto;
+    inset-inline: .65rem auto;
 }
 
 fieldset {
@@ -184,13 +198,10 @@ legend {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 100%; 
-    width: 100%; */
     color: var(--neutral-white);
     background-color: var(--neutral-very-dark-cyan);
     font-weight: 600;
     border-radius: var(--small-radius);
-    /* color: var(--light-grey); */
     padding-block: .2rem;
     transition: all 300ms ease;
 }
@@ -198,12 +209,7 @@ legend {
 .radio-container:last-child input+label {
     color: var(--neutral-dark-grayish-cyan);
     background-color: var(--neutral-very-light-grayish-cyan);
-    /* position: relative; */
-    /* display: none;*/
-    /* overflow: hidden; */
 }
-
-
 
 .radio-container input:hover+label {
     color: var(--neutral-very-dark-cyan);
@@ -215,8 +221,7 @@ legend {
     background-color: var(--primary-strong-cyan);
 }
 
-/* What should happen is that with the last radiobutton is selected the cursor must be blinking in the input without having to tab over */
-/* the input box is not even in alignment with the radiobutton */
+/* What should happen is that when the last radiobutton is selected the cursor must be blinking in the input without having to tab over */
 .radio-container:last-child input:checked+label {
     position: absolute;
     top: 0;
@@ -228,6 +233,7 @@ legend {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    justify-content: space-between;
     
     padding: 1.25rem;
     margin-block-start: 1.5rem;
@@ -239,6 +245,7 @@ legend {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-block-end: 1rem;
 }
 
 .amount {
@@ -271,20 +278,21 @@ legend {
     color: var(--neutral-very-dark-cyan);
     background-color: var(--neutral-medium-dark-cyan);
     padding-block: .5rem;
-    margin-block-start: 1rem;
     border-radius: var(--small-radius);
     border: none;
-}
-
-#btn:hover {
-    color: var(--neutral-very-dark-cyan);
-    background-color: var(--neutral-light-grayish-cyan);
-    cursor: pointer;
+    transition: all 200ms ease;
 }
 
 #btn.calculated {
     background-color: var(--primary-strong-cyan);
 }
+
+#btn.calculated:hover {
+    color: var(--neutral-very-dark-cyan);
+    background-color: var(--neutral-light-grayish-cyan);
+    cursor: pointer;
+}
+
 
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
@@ -305,26 +313,28 @@ legend {
     .container {
         gap: 3rem;
     }    
+
     main {
-        max-width: 880px;
+        max-width: 920px;
         width: 100%;
         margin-inline: 1rem;
 
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
+        place-items: center;
 
         padding: 1.5rem;
     }
 
     .form-container,
     .result-container {
-        max-width: 462px;
         width: 100%;
+        height: 100%;
     }
 
     .form-container {
-        gap: 1.5rem;
+        gap: 2rem;
     }
 
     .radio-btn-group {
@@ -333,7 +343,12 @@ legend {
     }
 
     .result-container {
-        gap: 2rem;
+        gap: 2.5rem;
         margin-block: 0;
     }
+    
+    .upper {
+        margin-block-start: 1rem;
+    }
+
   }
