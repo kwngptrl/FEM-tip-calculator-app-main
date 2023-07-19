@@ -68,7 +68,7 @@ body {
 header {
     align-self: end;
     justify-self: center;
-    padding-block-start: 6rem;
+    padding-block-start: 2rem;
 }
 
 .appname {
@@ -309,6 +309,10 @@ legend {
   @media screen and (min-width: 768px) {
     .container {
         gap: 3rem;
+    }
+
+    header {
+        padding-block-start: 6rem;
     }
 
     main {
