@@ -264,8 +264,9 @@ legend {
 }
 
 .result-container span {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
+    max-width: 9rem;
     color: var(--primary-strong-cyan);
     align-self: center;
 }
