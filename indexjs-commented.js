@@ -178,7 +178,8 @@ function watchArrowKeys(e) {
 
 reset.addEventListener('click', e => {
     /* Clear out bill and numOfPeople */
-    document.getElementById('tip-splitter').reset();
+    /* document.getElementById('tip-splitter').reset(); */
+    formContainer.reset();
     e.preventDefault();
     /* Clear out radioGroup & inputCustom values */
     for (var i = 0; i < radioButtons.length; i++) {

@@ -60,7 +60,7 @@ When I first downloaded the starter files and looked at it I was wondering why w
 
 This is where I fell into the JS rabbit hole. The HTML and CSS were largely done in two days. The JS on the other hand had me reading about IIFEs, closures, nested event listeners (which turned out to be bad practice), roving tabindexes, among other things. What I wanted to happen once I entered the group of radiobuttons was to be able to use the arrow keys to navigate inside it, and then when I get to the last radiobutton named 'custom' it turns into an `<input type='text' />` field.
 
-Originally, I attached event listeners to all elements of the form. Later on, I read about event delegation and decided to use that. There were a lot of tiny little things that had to be tracked like the tabindex, changing the radiobutton checked state from true to false and back, tracking where the cursor/caret was in order for keyboard navigation to work within the radiobutton group, transferring any value there to the radiobutton, and dispatching an event from it when the focus changes to another element to update the result in the result container. Then, if the user pressed the 'reset' button all states, values, and error messages had to be reset or returned to default.
+Originally, I attached event listeners to all elements of the form. Later on, I read about event delegation and decided to use that. There were a lot of tiny little things that had to be tracked like the tabindex, focus, blur, changing the radiobutton checked state from true to false and back, tracking where the cursor/caret was in order for keyboard navigation to work within the radiobutton group, transferring any value there to the radiobutton, and dispatching an event from it when the focus changes to another element to update the result in the result container. Then, if the user pressed the 'reset' button all states, values, and error messages had to be reset or returned to default.
 
 Now that I'm done with this I'm thinking I 'overthinked' too much. Maybe I could've just used 5 radiobuttons and a standard `<input type='text' />`. There would still be the issue of tabindex regardless though, as well as disabling a radiobutton if the 'custom' field is selected and active.
 
@@ -83,14 +83,14 @@ let tip = Number(inputCustom.value);
     border: 3px solid red;
 }
 ```
-I le
+
 ### Continued development
 
-This is pretty much done. I could refactor the code some more, but I think it's good enough. I urge anyone to go ahead and play with it both using keyboard navigation and mouse.
+I think I could refactor the code some more, but I think it's good enough. I urge anyone to go ahead and play with it both using keyboard navigation,  mouse, or on a smartphone. If anyone has ideas on improving the JS I'm all ears.
 
 ### Useful resources
 
-- [HTML5 Form Validation With the “pattern” Attribute](https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t) - This is an interesting read, although I did not apply much of what was writen.
+- [HTML5 Form Validation With the “pattern” Attribute](https://webdesign.tutsplus.com/html5-form-validation-with-the-pattern-attribute--cms-25145t) - This is an interesting read, although I did not apply much of what was written.
 - [Radio Group Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/#keyboard_interaction) - An article discussing the keyboard behavior of radiobuttons.
 
 ## Author

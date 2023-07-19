@@ -99,7 +99,7 @@ function watchArrowKeys(e) {
 }
 
 reset.addEventListener('click', e => {
-    document.getElementById('tip-splitter').reset();
+    formContainer.reset();
     e.preventDefault();
     for (var i = 0; i < radioButtons.length; i++) {
         radioButtons[i].checked = false;
