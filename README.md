@@ -95,7 +95,7 @@ I think I could refactor the code some more, but I think it's good enough. I urg
 
 ## Author
 
-- Frontend Mentor - [@Wannacode](https://www.frontendmentor.io/profile/kwngptrl)'d like to share.**
+- Frontend Mentor - [@Wannacode](https://www.frontendmentor.io/profile/kwngptrl)
 
 ## Acknowledgments
 
