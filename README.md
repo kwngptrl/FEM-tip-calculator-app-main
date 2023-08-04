@@ -66,8 +66,8 @@ Now that I'm done with this I'm thinking I 'overthinked' too much. Maybe I could
 
 For computing the result and displaying to the result container, I used the following code so that it wouldn't display `NaN` or `Infinity`.
 ```js
-tipAmount.innerText = `\$${(isFinite(tipAmountPerPerson)) ? tipAmountPerPerson.toFixed(2): '0.00'}`;
-totalAmount.innerText = `\$${(isFinite(total)) ? total.toFixed(2) : '0.00'}`;
+tipAmount.innerText = `$${(isFinite(tipAmountPerPerson)) ? tipAmountPerPerson.toFixed(2): '0.00'}`;
+totalAmount.innerText = `$${(isFinite(total)) ? total.toFixed(2) : '0.00'}`;
 ```
 It would just display $0.00, the error message would be displayed closest to the input field for bill and/or number of people. For the 'custom' input field within the radiobutton group, entering invalid values would cause the border color of the input field to turn red. Although there is a css ```:invalid``` selector, I didn't like its behavior.
 ```js
